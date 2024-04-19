@@ -1,3 +1,8 @@
+# Fork info
+This is a fork with unofficial (hacky) support for Visual Studio. 
+In the official repo there is a PR that adds this feature, but it doesn't work right now.
+Because of that i've only implemented a quick hack, not a proper solution - but it works.
+
 # HotAvalonia
 
 [![GitHub Build Status](https://img.shields.io/github/actions/workflow/status/Kir-Antipov/HotAvalonia/build.yml?style=flat&logo=github&cacheSeconds=3600)](https://github.com/Kir-Antipov/HotAvalonia/actions/workflows/build.yml)
