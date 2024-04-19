@@ -223,7 +223,11 @@ internal sealed class FileWatcher : IDisposable
 
         lock (_lock)
         {
-            if (!IsWatchingFile(oldFullPath) || !TryUpdateLastWriteTime(newFullPath))
+            //if (!IsWatchingFile(oldFullPath) || !TryUpdateLastWriteTime(newFullPath))
+            //    return;
+
+            // Visual Studio fix
+            if (!IsWatchingFile(newFullPath))
                 return;
 
             _files.Remove(oldFullPath);

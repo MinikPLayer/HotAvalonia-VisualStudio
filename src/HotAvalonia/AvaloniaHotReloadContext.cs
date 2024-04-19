@@ -109,6 +109,7 @@ public sealed class AvaloniaHotReloadContext : IDisposable
 
         try
         {
+            LoggingHelper.Logger?.Log(this, "Reloading {Type} ({Uri})", controlManager.Control.ControlType, controlManager.Control.Uri);
             await controlManager.ReloadAsync().ConfigureAwait(false);
         }
         catch (Exception e)
@@ -124,6 +125,10 @@ public sealed class AvaloniaHotReloadContext : IDisposable
     /// <param name="args">The event arguments containing details of the moved file.</param>
     private void OnMoved(object sender, MovedEventArgs args)
     {
+        var directory = Path.GetDirectoryName(args.FullPath);
+        var fileName = Path.GetFileName(args.FullPath);
+        OnChanged(sender, new FileSystemEventArgs(WatcherChangeTypes.Changed, directory, fileName));
+
         string oldFullPath = Path.GetFullPath(args.OldFullPath);
         if (!_controls.TryGetValue(oldFullPath, out AvaloniaControlManager? controlManager))
             return;
